@@ -1073,6 +1073,28 @@ static void TestRead(hdfsFS fs, int readSize, int64_t blockSize,
     hdfsCloseFile(fs, in);
 }
 
+TEST_F(TestCInterface, TestRead_SmallBuffer) {
+    hdfsFile in = NULL;
+    ASSERT_TRUE(CreateFile(fs, BASE_DIR"/testRead", 0, 10240));
+    in = hdfsOpenFile(fs, BASE_DIR"/testRead", O_RDONLY, 0, 0, 0);
+    ASSERT_TRUE(in != NULL);
+    std::vector<char> buf(100);
+
+    for (size_t todo = 1; todo < buf.size(); ++todo) {
+        memset(&buf[0], 'x', buf.size());
+        ASSERT_EQ(0, hdfsSeek(fs, in, 0));
+        int done = hdfsRead(fs, in, &buf[0], todo);
+        ASSERT_EQ(todo, done);
+        ASSERT_TRUE(Hdfs::CheckBuffer(&buf[0], done, 0));
+
+        for (size_t i = todo; i < buf.size(); ++i) {
+            ASSERT_EQ('x', buf[i]);
+        }
+    }
+
+    hdfsCloseFile(fs, in);
+}
+
 TEST_F(TestCInterface, TestRead_Success) {
     TestRead(fs, 1024, 1024, 21 * 1024);
     TestRead(fs, 8 * 1024, 1024 * 1024, 21 * 1024 * 1024);
