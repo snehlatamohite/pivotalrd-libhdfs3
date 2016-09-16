@@ -4,6 +4,19 @@ libhdfs3
 
 **A Native C/C++ HDFS Client**
 
+========================
+This repository is a part of [Apache HAWQ](http://hawq.incubator.apache.org/) and is going to merge into Apache HAWQ project. 
+
+Apache HAWQ community mantains all the pull request, issues and releases. 
+
+This repository is now read only and eventual a mirror of ASF repository (to be created) [HAWQ-1059](https://issues.apache.org/jira/browse/HAWQ-1059).
+
+Current Stable Release: [Place Holder] [HAWQ-1058](https://issues.apache.org/jira/browse/HAWQ-1058).
+
+Issue Tracker: [JIRA](https://issues.apache.org/jira/browse/HAWQ)
+
+Mail LIst: [Dev](http://mail-archives.apache.org/mod_mbox/incubator-hawq-dev/)
+
 ## Description
 
 The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for applications that have large data sets.
