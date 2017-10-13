@@ -34,6 +34,17 @@
 #include <cpuid.h>
 #endif
 
+#ifdef __PPC64__
+namespace Hdfs {
+	namespace Internal {
+
+		bool HWCrc32c::available() {
+			return false;
+		}
+	}
+}
+#endif
+
 #if ((defined(__X86__) || defined(__i386__) || defined(i386) || defined(_M_IX86) || defined(__386__) || defined(__x86_64__) || defined(_M_X64)))
 #if !defined(__SSE4_2__)
 
